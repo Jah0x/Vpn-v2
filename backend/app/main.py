@@ -1,3 +1,5 @@
+"""FastAPI application setup for the VPN backend."""
+
 from fastapi import FastAPI
 
 from .routes import auth
@@ -8,5 +10,7 @@ app.include_router(auth.router, prefix="/auth", tags=["auth"])
 
 
 @app.get("/")
-async def root():
+async def root() -> dict[str, str]:
+    """Health check endpoint returning API status."""
+
     return {"status": "ok"}

@@ -1,3 +1,5 @@
+"""Email sending utilities used for user notifications."""
+
 import os
 from email.message import EmailMessage
 
@@ -9,7 +11,9 @@ SMTP_USER = os.environ.get("SMTP_USER")
 SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
 
 
-async def send_email(to_email: str, subject: str, body: str):
+async def send_email(to_email: str, subject: str, body: str) -> None:
+    """Send an email via SMTP using configured credentials."""
+
     message = EmailMessage()
     message["From"] = SMTP_USER or "noreply@example.com"
     message["To"] = to_email
