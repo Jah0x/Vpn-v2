@@ -1,43 +1,54 @@
+ vava94-codex/следовать-файлу-read-me
 """Authentication routes for user management."""
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
+
 from passlib.context import CryptContext
 from pydantic import EmailStr
 
 from ..models.user import UserCreate, User
+ vava94-codex/следовать-файлу-read-me
 from ..services import token
 from ..auth import LDAPClient
 
 router = APIRouter()
 ldap_client = LDAPClient()
 
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # In-memory store for demo purposes
+ vava94-codex/следовать-файлу-read-me
 fake_users: dict[str, dict[str, str]] = {}
 
 
 def get_password_hash(password: str) -> str:
     """Return a bcrypt hash of the given password."""
 
+
     return pwd_context.hash(password)
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
+ vava94-codex/следовать-файлу-read-me
     """Check that the plaintext password matches the stored hash."""
+
 
     return pwd_context.verify(plain_password, hashed_password)
 
 
 @router.post("/register", response_model=User)
+ vava94-codex/следовать-файлу-read-me
 async def register(user: UserCreate) -> User:
     """Create a new user with an email and password."""
+
 
     if user.email in fake_users:
         raise HTTPException(status_code=400, detail="User already exists")
     hashed = get_password_hash(user.password)
     user_id = len(fake_users) + 1
+ vava94-codex/следовать-файлу-read-me
     fake_users[user.email] = {
         "id": user_id,
         "email": user.email,
@@ -45,10 +56,12 @@ async def register(user: UserCreate) -> User:
         "telegram_id": None,
     }
     ldap_client.create_user(str(user_id), user.email, hashed)
+
     # TODO: send registration email
     return User(id=user_id, email=user.email)
 
 
+ vava94-codex/следовать-файлу-read-me
 @router.post("/link-telegram", response_model=User)
 async def link_telegram(email: EmailStr, telegram_id: int) -> User:
     """Link a Telegram account to an existing user."""
@@ -113,3 +126,4 @@ async def me(current_user: User = Depends(get_current_user)) -> User:
     """Return the currently authenticated user."""
 
     return current_user
+

@@ -2,9 +2,11 @@
 
 Backend API and Telegram bot for VPN subscriptions.
 
+ vava94-codex/следовать-файлу-read-me
 This repository contains a small FastAPI backend and a Telegram bot skeleton.
 Configuration is handled via environment variables. See the list below for
 required settings.
+
 
 ## Development
 
@@ -16,17 +18,22 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+ vava94-codex/следовать-файлу-read-me
 Run the backend during development:
+
 
 ```bash
 uvicorn backend.app.main:app --reload
 ```
 
+ vava94-codex/следовать-файлу-read-me
 Run the bot in polling mode:
+
 
 ```bash
 python bot/main.py
 ```
+ vava94-codex/следовать-файлу-read-me
 
 ## Configuration
 
@@ -81,3 +88,4 @@ pytest
 ## Development Log
 
 Лог изменений и заметки по разработке хранятся в файле `docs/DEVLOG.md`.
+

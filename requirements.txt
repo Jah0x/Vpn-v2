@@ -5,6 +5,7 @@ passlib[bcrypt]
 pyjwt
 aiosmtplib
 python-telegram-bot>=20.0
+vava94-codex/следовать-файлу-read-me
 ldap3
 httpx
 pytest
