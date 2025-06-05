@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+python-multipart
+passlib[bcrypt]
+pyjwt
+aiosmtplib
+python-telegram-bot>=20.0
+ldap3
+httpx
+pytest
+pytest-asyncio
+email-validator
