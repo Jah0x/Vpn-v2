@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-multipart
+passlib[bcrypt]
+pyjwt
+aiosmtplib
+python-telegram-bot>=20.0
